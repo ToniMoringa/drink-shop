@@ -1,0 +1,11 @@
+.app {
+  min-height: 100vh;
+  background: #fff9f0;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.main {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
