@@ -1,0 +1,27 @@
+.searchContainer {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto 2rem;
+}
+
+.icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+}
+
+.input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3rem;
+  border: 2px solid #E0E0E0;
+  border-radius: 16px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  border-color: #4A6CF7;
+  box-shadow: 0 0 0 4px rgba(74, 108, 247, 0.1);
+}

@@ -5,34 +5,47 @@ export const useProducts = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchProducts = async () => {
-    const res = await fetch('http://localhost:3001/products');
-    const data = await res.json();
-    setProducts(data);
-    setLoading(false);
+    try {
+      const res = await fetch('http://localhost:3001/products');
+      const data = await res.json();
+      setProducts(data);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const addProduct = async (product) => {
-    const res = await fetch('http://localhost:3001/products', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(product),
-    });
-    const newProduct = await res.json();
-    setProducts([...products, newProduct]);
+    try {
+      const res = await fetch('http://localhost:3001/products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(product),
+      });
+      const newProduct = await res.json();
+      setProducts(prev => [...prev, newProduct]);
+    } catch (error) {
+      console.error('Error adding product:', error);
+    }
   };
 
   const updateProduct = async (id, updates) => {
-    const res = await fetch(`http://localhost:3001/products/${id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updates),
-    });
-    const updated = await res.json();
-    setProducts(products.map((p) => (p.id === id ? updated : p)));
+    try {
+      const res = await fetch(`http://localhost:3001/products/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updates),
+      });
+      const updated = await res.json();
+      setProducts(prev => prev.map(p => p.id === id ? updated : p));
+    } catch (error) {
+      console.error('Error updating product:', error);
+    }
   };
 
-  useEffect(() => {
-    fetchProducts();
+  useEffect(() => { 
+    fetchProducts(); 
   }, []);
 
   return { products, loading, addProduct, updateProduct };

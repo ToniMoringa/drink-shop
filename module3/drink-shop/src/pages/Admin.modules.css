@@ -1,0 +1,127 @@
+.admin {
+  padding: 2rem 0;
+}
+
+.heading {
+  text-align: center;
+  color: #4A6CF7;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+}
+
+.productList {
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(74, 108, 247, 0.15);
+}
+
+.productList h2 {
+  color: #4A6CF7;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+}
+
+.productItem {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border-bottom: 2px solid #F0F0F0;
+  align-items: center;
+}
+
+.productItem:last-child {
+  border-bottom: none;
+}
+
+.productItem img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #F8FAFF;
+}
+
+.info {
+  flex: 1;
+}
+
+.info h3 {
+  color: #4A6CF7;
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.info p {
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.category {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: #E8EEFF;
+  color: #4A6CF7;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-bottom: 0.75rem;
+}
+
+.priceRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #4A6CF7;
+}
+
+.editBtn {
+  background: #4A6CF7;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.editBtn:hover {
+  background: #3B5BD6;
+  transform: translateY(-2px);
+}
+
+.editMode {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.priceInput {
+  width: 120px;
+  padding: 0.5rem;
+}
+
+.saveBtn {
+  background: #4CAF50;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.cancelBtn {
+  background: #FF5252;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
