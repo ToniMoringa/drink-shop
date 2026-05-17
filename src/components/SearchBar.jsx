@@ -1,17 +1,42 @@
-import { Search } from 'lucide-react';
+import { Search, Filter, X } from 'lucide-react';
 import styles from './SearchBar.module.css';
 
-export default function SearchBar({ value, onChange }) {
+const SearchBar = ({ searchTerm, setSearchTerm, category, setCategory }) => {
   return (
     <div className={styles.searchContainer}>
-      <Search size={20} className={styles.icon} />
-      <input
-        type="text"
-        placeholder="Search drinks..."
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className={styles.input}
-      />
+      <div className={styles.searchBox}>
+        <Search size={20} className={styles.searchIcon} />
+        <input
+          type="text"
+          placeholder="Search drinks..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className={styles.searchInput}
+        />
+        {searchTerm && (
+          <button 
+            onClick={() => setSearchTerm('')}
+            className={styles.clearButton}
+          >
+            <X size={16} />
+          </button>
+        )}
+      </div>
+      
+      <div className={styles.filterContainer}>
+        <Filter size={18} />
+        <select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          className={styles.filterSelect}
+        >
+          <option value="all">All Drinks</option>
+          <option value="hot">Hot Drinks</option>
+          <option value="cold">Cold Drinks</option>
+        </select>
+      </div>
     </div>
   );
-}
+};
+
+export default SearchBar;

@@ -2,11 +2,20 @@
   padding: 2rem 0;
 }
 
-.heading {
+.header {
   text-align: center;
-  color: #4A6CF7;
+  margin-bottom: 3rem;
+}
+
+.header h1 {
+  color: var(--primary);
   font-size: 2.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.header p {
+  color: var(--text-light);
+  font-size: 1.1rem;
 }
 
 .grid {
@@ -16,17 +25,73 @@
   margin-top: 2rem;
 }
 
-.loading {
+.loading,
+.error,
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
   text-align: center;
-  font-size: 1.5rem;
-  color: #4A6CF7;
-  padding: 4rem;
+  color: var(--text-light);
 }
 
-.noResults {
-  text-align: center;
+.loading {
+  gap: 1rem;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+  color: var(--primary);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error {
+  gap: 1rem;
+  color: var(--error);
+}
+
+.error button {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: background 0.3s;
+}
+
+.error button:hover {
+  background: var(--primary-dark);
+}
+
+.empty {
   grid-column: 1 / -1;
-  font-size: 1.25rem;
-  color: #999;
-  padding: 3rem;
+  gap: 1rem;
+  padding: 6rem 2rem;
+}
+
+.empty svg {
+  opacity: 0.3;
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }

@@ -1,11 +1,25 @@
 .app {
   min-height: 100vh;
-  background: #fff9f0;
-  font-family: 'Quicksand', sans-serif;
+  background-color: #fef9f3;
 }
 
 .main {
-  padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/*  color scheme */
+:root {
+  --primary: #9b2335;
+  --primary-dark: #7a1c2b;
+  --secondary: #8b6f4e;
+  --accent: #d4a574;
+  --background: #fef9f3;
+  --card-bg: #ffffff;
+  --text: #4a4a4a;
+  --text-light: #777777;
+  --border: #e8d5c4;
+  --success: #5b8c5a;
+  --error: #b93b3b;
 }

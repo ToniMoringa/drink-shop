@@ -2,126 +2,125 @@
   padding: 2rem 0;
 }
 
-.heading {
-  text-align: center;
-  color: #4A6CF7;
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.subtitle {
-  text-align: center;
-  color: #666;
-  margin-bottom: 3rem;
-  font-size: 1.1rem;
-}
-
-.productList {
-  background: white;
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 4px 16px rgba(74, 108, 247, 0.15);
-}
-
-.productList h2 {
-  color: #4A6CF7;
-  margin-bottom: 1.5rem;
-  font-size: 1.75rem;
-}
-
-.productItem {
+.header {
   display: flex;
-  gap: 1.5rem;
-  padding: 1.5rem;
-  border-bottom: 2px solid #F0F0F0;
+  justify-content: space-between;
   align-items: center;
-}
-
-.productItem:last-child {
-  border-bottom: none;
-}
-
-.productItem img {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-  border-radius: 12px;
-  background: #F8FAFF;
-}
-
-.info {
-  flex: 1;
-}
-
-.info h3 {
-  color: #4A6CF7;
-  margin-bottom: 0.5rem;
-  font-size: 1.3rem;
-}
-
-.info p {
-  color: #666;
-  margin-bottom: 0.5rem;
-}
-
-.category {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background: #E8EEFF;
-  color: #4A6CF7;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: capitalize;
-  margin-bottom: 0.75rem;
-}
-
-.priceRow {
-  display: flex;
-  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
-.price {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #4A6CF7;
+.header h1 {
+  color: var(--primary);
+  font-size: 2.5rem;
 }
 
-.editBtn {
-  background: #4A6CF7;
-  color: white;
-  padding: 0.5rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.editBtn:hover {
-  background: #3B5BD6;
-  transform: translateY(-2px);
-}
-
-.editMode {
+.addButton {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.875rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(155, 35, 53, 0.3);
 }
 
-.priceInput {
-  width: 120px;
-  padding: 0.5rem;
+.addButton:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(155, 35, 53, 0.4);
 }
 
-.saveBtn {
-  background: #4CAF50;
-  color: white; 
-  padding: 0.5rem;
+.productsList {
+  margin-top: 3rem;
+}
+
+.productsList h2 {
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.cardWrapper {
+  position: relative;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.editBtn,
+.deleteBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border: none;
   border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
-.cancelBtn {
-  background: #FF5252;
-  color: white;
-  padding: 0.5rem;
-  border-radius: 8px;
+.editBtn {
+  background: var(--accent);
+  color: #fff;
+}
+
+.editBtn:hover {
+  background: var(--secondary);
+}
+
+.deleteBtn {
+  background: var(--error);
+  color: #fff;
+}
+
+.deleteBtn:hover {
+  background: #9b2f2f;
+}
+
+.loading,
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  gap: 1rem;
+  color: var(--text-light);
+}
+
+.error {
+  color: var(--error);
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
