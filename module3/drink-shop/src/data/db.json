@@ -1,0 +1,25 @@
+{
+  "store_info": {
+    "id": 1,
+    "name": "Pixel Brew Café",
+    "tagline": "Cute drinks for pixel hearts"
+  },
+  "products": [
+    {
+      "id": 1,
+      "name": "Matcha Magic",
+      "description": "Creamy pixel matcha latte",
+      "category": "cold",
+      "price": 5.5,
+      "image": "/assets/drinks/matcha.png"
+    },
+    {
+      "id": 2,
+      "name": "Cozy Hot Chocolate",
+      "description": "Warm pixel cocoa",
+      "category": "hot",
+      "price": 4.75,
+      "image": "/assets/drinks/hotchoc.png"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+.nav {
+  display: flex;
+  justify-content: space-around;
+  background: #4A6CF7;
+  padding: 1rem 2rem;
+  border-radius: 0 0 20px 20px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.link:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+
+.active {
+  background: white;
+  color: #4A6CF7;
+}
