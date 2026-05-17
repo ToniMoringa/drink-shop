@@ -11,7 +11,7 @@
       "description": "Creamy pixel matcha latte with love",
       "category": "cold",
       "price": 5.5,
-      "image": "/assets/drinks/matcha.png"
+      "image": "/assets/drinks/matcha.jpg"
     },
     {
       "id": "2",
@@ -19,7 +19,7 @@
       "description": "Warm pixel cocoa with marshmallows",
       "category": "hot",
       "price": 4.75,
-      "image": "/assets/drinks/hotchoc.png"
+      "image": "/assets/drinks/hotchoc.jpg"
     },
     {
       "id": "3",
@@ -27,7 +27,7 @@
       "description": "Fresh pixel berry smoothie",
       "category": "cold",
       "price": 6,
-      "image": "/assets/drinks/berry.png"
+      "image": "/assets/drinks/berry.jpg"
     },
     {
       "id": "4",
@@ -35,7 +35,7 @@
       "description": "Sweet pixel caramel goodness",
       "category": "hot",
       "price": 5.25,
-      "image": "/assets/drinks/latte.png"
+      "image": "/assets/drinks/latte.jpg"
     },
     {
       "name": "Bear Cookie drink",
