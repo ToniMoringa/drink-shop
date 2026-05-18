@@ -1,72 +1,55 @@
 import { Link } from 'react-router-dom';
-import { ShoppingBag, Heart, Sparkles, Coffee, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import FeaturedProducts from '../components/FeaturedProducts';
 import styles from './Home.module.css';
 
 const Home = () => {
   return (
-    <div>
-      <div className={styles.hero}>
-        <div className={styles.heroBackground}></div>
+    <div className={styles.home}>
+      {/* Hero Section */}
+      <section className={styles.hero}>
+        <div className={styles.heroImage}>
+          <img
+            src="https://images.pexels.com/photos/13662665/pexels-photo-13662665.jpeg"
+            alt="Pixel Brew Café - Cozy coffee atmosphere"
+            className={styles.heroImg}
+          />
+          <div className={styles.heroOverlay}></div>
+        </div>
 
         <div className={styles.heroContent}>
-          <div className={styles.heroBadge}>
-            <Sparkles
-              size={16}
-              style={{ display: 'inline', marginRight: '4px' }}
-            />
-            Welcome to Pixel Brew Café
-          </div>
-
           <h1 className={styles.heroTitle}>Cute Drinks for Pixel Hearts</h1>
-
           <p className={styles.heroSubtitle}>
             Discover our collection of adorable pixel-art drinks, crafted with
             love and perfect for your cozy moments.
           </p>
-
           <Link to="/shop" className={styles.heroButton}>
-            <ShoppingBag size={20} />
-            Browse Drinks
+            Explore Our Menu
             <ArrowRight size={20} />
           </Link>
         </div>
+      </section>
 
-        {/*  hero image */}
-        <img
-          src="/assets/hero-drink.png"
-          alt="Featured Drink"
-          className={styles.heroImage}
-        />
-      </div>
+      {/* Featured Products */}
+      <FeaturedProducts />
 
-      <div className={styles.features}>
-        <div className={styles.feature}>
-          <div className={styles.featureIcon}>
-            <Coffee size={28} />
+      {/* Story Section */}
+      <section className={`${styles.section} ${styles.story}`}>
+        <div className={styles.container}>
+          <div className={styles.storyContent}>
+            <h2 className={styles.storyTitle}>Our Story</h2>
+            <p className={styles.storyText}>
+              Pixel Brew Café began with a simple idea: bring the warmth of
+              handcrafted drinks together with the charm of pixel art. Every
+              drink is made with care, using quality ingredients and a whole lot
+              of love.
+            </p>
+            <Link to="/shop" className={styles.storyLink}>
+              Learn More →
+            </Link>
           </div>
-          <h3>Fresh Brewed</h3>
-          <p>
-            Every drink is made fresh with premium ingredients and pixel-perfect
-            presentation
-          </p>
         </div>
-
-        <div className={styles.feature}>
-          <div className={styles.featureIcon}>
-            <Heart size={28} />
-          </div>
-          <h3>Made with Love</h3>
-          <p>Each pixel drink is crafted with care and attention to detail</p>
-        </div>
-
-        <div className={styles.feature}>
-          <div className={styles.featureIcon}>
-            <Sparkles size={28} />
-          </div>
-          <h3>Unique Designs</h3>
-          <p>Exclusive pixel art designs you won't find anywhere else</p>
-        </div>
-      </div>
+      </section>
     </div>
   );
 };

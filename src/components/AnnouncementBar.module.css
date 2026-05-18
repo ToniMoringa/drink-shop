@@ -1,0 +1,40 @@
+.announcementBar {
+  background-color: var(--banner-bg);
+  color: var(--text-primary);
+  padding: 0.75rem 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.message {
+  margin: 0;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .announcementBar {
+    font-size: 0.85rem;
+    padding: 0.5rem 0;
+  }
+}

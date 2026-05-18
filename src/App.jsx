@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AnnouncementBar from './components/AnnouncementBar';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Shop from './pages/Shop';
 import Admin from './pages/Admin';
@@ -9,6 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className={styles.app}>
+        <AnnouncementBar />
         <Navbar />
         <main className={styles.main}>
           <Routes>
@@ -17,6 +20,7 @@ function App() {
             <Route path="/admin" element={<Admin />} />
           </Routes>
         </main>
+        <Footer />
       </div>
     </BrowserRouter>
   );
