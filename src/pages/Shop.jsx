@@ -1,5 +1,3 @@
-import { mockProducts } from '../data/mockData';
-
 //  mock data in production, API in development
 const USE_MOCK_DATA = import.meta.env.PROD;
 
