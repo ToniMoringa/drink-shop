@@ -6,9 +6,8 @@ export const useProducts = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch(
-        'https://json-server-vercel-five-sand.vercel.app',
-      );
+      const res = await fetch('/api/server');
+      if (!res.ok) throw new Error('Failed to fetch products');
       const data = await res.json();
       setProducts(data);
     } catch (error) {
