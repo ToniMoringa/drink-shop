@@ -18,7 +18,9 @@ const Admin = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:3001/products');
+      const response = await fetch(
+        'https://json-server-vercel-five-sand.vercel.app/',
+      );
       if (!response.ok) throw new Error('Failed to fetch');
       const data = await response.json();
       setProducts(data);
@@ -34,7 +36,7 @@ const Admin = () => {
     if (!confirm('Delete this drink?')) return;
 
     try {
-      await fetch(`http://localhost:3001/products/${id}`, {
+      await fetch(` ${id}`, {
         method: 'DELETE',
       });
       setProducts(products.filter((p) => p.id !== id));

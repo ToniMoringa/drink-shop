@@ -8,7 +8,7 @@ const ProductForm = ({ product, onSuccess, onCancel }) => {
     description: product?.description || '',
     category: product?.category || 'hot',
     price: product?.price || '',
-    image: product?.image || ''
+    image: product?.image || '',
   });
   const [imagePreview, setImagePreview] = useState(product?.image || null);
   const [uploading, setUploading] = useState(false);
@@ -37,16 +37,16 @@ const ProductForm = ({ product, onSuccess, onCancel }) => {
     setUploading(true);
 
     try {
-      const url = product 
-        ? `http://localhost:3001/products/${product.id}`
-        : 'http://localhost:3001/products';
-      
+      const url = product
+        ? `https://json-server-vercel-five-sand.vercel.app/${product.id}`
+        : 'https://json-server-vercel-five-sand.vercel.app';
+
       const method = product ? 'PATCH' : 'POST';
 
       const response = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       if (!response.ok) throw new Error('Failed to save');
@@ -85,7 +85,7 @@ const ProductForm = ({ product, onSuccess, onCancel }) => {
             </button>
           </div>
         ) : (
-          <div 
+          <div
             className={styles.uploadZone}
             onClick={() => fileInputRef.current?.click()}
           >
@@ -119,7 +119,9 @@ const ProductForm = ({ product, onSuccess, onCancel }) => {
         <label className={styles.label}>Description *</label>
         <textarea
           value={formData.description}
-          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, description: e.target.value })
+          }
           placeholder="Creamy pixel matcha latte with love"
           rows="3"
           required
@@ -132,7 +134,9 @@ const ProductForm = ({ product, onSuccess, onCancel }) => {
           <label className={styles.label}>Category *</label>
           <select
             value={formData.category}
-            onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, category: e.target.value })
+            }
             className={styles.input}
           >
             <option value="hot">Hot Drink</option>
@@ -147,7 +151,9 @@ const ProductForm = ({ product, onSuccess, onCancel }) => {
             step="0.01"
             min="0"
             value={formData.price}
-            onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) })}
+            onChange={(e) =>
+              setFormData({ ...formData, price: parseFloat(e.target.value) })
+            }
             placeholder="5.50"
             required
             className={styles.input}
@@ -161,7 +167,7 @@ const ProductForm = ({ product, onSuccess, onCancel }) => {
         </button>
         <button type="submit" className={styles.submitBtn} disabled={uploading}>
           <Save size={18} />
-          {uploading ? 'Saving...' : (product ? 'Update Drink' : 'Add Drink')}
+          {uploading ? 'Saving...' : product ? 'Update Drink' : 'Add Drink'}
         </button>
       </div>
     </form>

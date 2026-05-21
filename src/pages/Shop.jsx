@@ -11,7 +11,9 @@ const fetchProducts = async () => {
       setProducts(mockProducts);
     } else {
       //  JSON server for development
-      const response = await fetch('http://localhost:3001/products');
+      const response = await fetch(
+        'https://json-server-vercel-five-sand.vercel.app',
+      );
       if (!response.ok) throw new Error('Failed to fetch products');
       const data = await response.json();
       setProducts(data);
@@ -44,7 +46,9 @@ const Shop = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:3001/products');
+      const response = await fetch(
+        'https://json-server-vercel-five-sand.vercel.app',
+      );
       if (!response.ok) throw new Error('Failed to fetch products');
       const data = await response.json();
       setProducts(data);
