@@ -3,6 +3,9 @@ import { Upload, X, Save } from 'lucide-react';
 import styles from './ProductForm.module.css';
 
 const ProductForm = ({ product, onSuccess, onCancel }) => {
+  const API_URL = import.meta.env.VITE_API_URL;
+  const ENDPOINT = API_URL + '/drinks';
+
   const [formData, setFormData] = useState({
     name: product?.name || '',
     description: product?.description || '',
@@ -21,7 +24,6 @@ const ProductForm = ({ product, onSuccess, onCancel }) => {
         alert('File must be less than 5MB');
         return;
       }
-
       const reader = new FileReader();
       reader.onloadend = () => {
         const base64String = reader.result;
@@ -35,12 +37,8 @@ const ProductForm = ({ product, onSuccess, onCancel }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setUploading(true);
-
     try {
-      const url = product
-        ? `https://json-server-vercel-five-sand.vercel.app/${product.id}`
-        : 'https://json-server-vercel-five-sand.vercel.app';
-
+      const url = product ? `${ENDPOINT}/${product.id}` : ENDPOINT;
       const method = product ? 'PATCH' : 'POST';
 
       const response = await fetch(url, {
@@ -50,7 +48,6 @@ const ProductForm = ({ product, onSuccess, onCancel }) => {
       });
 
       if (!response.ok) throw new Error('Failed to save');
-
       onSuccess();
     } catch (error) {
       alert('Failed to save drink: ' + error.message);
@@ -85,10 +82,7 @@ const ProductForm = ({ product, onSuccess, onCancel }) => {
             </button>
           </div>
         ) : (
-          <div
-            className={styles.uploadZone}
-            onClick={() => fileInputRef.current?.click()}
-          >
+          <div className={styles.uploadZone} onClick={() => fileInputRef.current?.click()}>
             <Upload size={40} />
             <p>Click to upload image</p>
             <span className={styles.hint}>PNG, JPG up to 5MB</span>
@@ -119,9 +113,7 @@ const ProductForm = ({ product, onSuccess, onCancel }) => {
         <label className={styles.label}>Description *</label>
         <textarea
           value={formData.description}
-          onChange={(e) =>
-            setFormData({ ...formData, description: e.target.value })
-          }
+          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
           placeholder="Creamy pixel matcha latte with love"
           rows="3"
           required
@@ -134,9 +126,7 @@ const ProductForm = ({ product, onSuccess, onCancel }) => {
           <label className={styles.label}>Category *</label>
           <select
             value={formData.category}
-            onChange={(e) =>
-              setFormData({ ...formData, category: e.target.value })
-            }
+            onChange={(e) => setFormData({ ...formData, category: e.target.value })}
             className={styles.input}
           >
             <option value="hot">Hot Drink</option>
@@ -151,9 +141,7 @@ const ProductForm = ({ product, onSuccess, onCancel }) => {
             step="0.01"
             min="0"
             value={formData.price}
-            onChange={(e) =>
-              setFormData({ ...formData, price: parseFloat(e.target.value) })
-            }
+            onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) })}
             placeholder="5.50"
             required
             className={styles.input}

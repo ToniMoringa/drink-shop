@@ -5,6 +5,9 @@ import { Plus, Edit2, Trash2, AlertCircle, Loader2 } from 'lucide-react';
 import styles from './Admin.module.css';
 
 const Admin = () => {
+  const API_URL = import.meta.env.VITE_API_URL;
+  const ENDPOINT = API_URL + '/drinks';
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -18,12 +21,10 @@ const Admin = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await fetch(
-        'https://json-server-vercel-five-sand.vercel.app/',
-      );
+      const response = await fetch(ENDPOINT);
       if (!response.ok) throw new Error('Failed to fetch');
       const data = await response.json();
-      setProducts(data);
+      setProducts(Array.isArray(data) ? data : Object.values(data).flat());
       setError(null);
     } catch (err) {
       setError(err.message);
@@ -34,14 +35,14 @@ const Admin = () => {
 
   const handleDelete = async (id) => {
     if (!confirm('Delete this drink?')) return;
-
     try {
-      await fetch(` ${id}`, {
+      const response = await fetch(`${ENDPOINT}/${id}`, {
         method: 'DELETE',
       });
+      if (!response.ok) throw new Error('Failed to delete');
       setProducts(products.filter((p) => p.id !== id));
     } catch (err) {
-      alert('Failed to delete');
+      alert('Failed to delete: ' + err.message);
     }
   };
 
@@ -83,7 +84,6 @@ const Admin = () => {
           {showForm ? 'Cancel' : 'Add Drink'}
         </button>
       </div>
-
       {showForm && (
         <ProductForm
           product={editingProduct}

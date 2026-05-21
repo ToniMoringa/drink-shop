@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
 
 export const useProducts = () => {
+  const API_URL = import.meta.env.VITE_API_URL;
+  const ENDPOINT = API_URL + '/drinks';
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch('/api/server');
+      const res = await fetch(ENDPOINT);
       if (!res.ok) throw new Error('Failed to fetch products');
       const data = await res.json();
-      setProducts(data);
+      setProducts(Array.isArray(data) ? data : Object.values(data).flat());
     } catch (error) {
       console.error('Error fetching products:', error);
     } finally {
@@ -19,14 +22,11 @@ export const useProducts = () => {
 
   const addProduct = async (product) => {
     try {
-      const res = await fetch(
-        'https://json-server-vercel-five-sand.vercel.app',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(product),
-        },
-      );
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(product),
+      });
       const newProduct = await res.json();
       setProducts((prev) => [...prev, newProduct]);
     } catch (error) {
@@ -36,14 +36,11 @@ export const useProducts = () => {
 
   const updateProduct = async (id, updates) => {
     try {
-      const res = await fetch(
-        `https://json-server-vercel-five-sand.vercel.app/${id}`,
-        {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(updates),
-        },
-      );
+      const res = await fetch(`${ENDPOINT}/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updates),
+      });
       const updated = await res.json();
       setProducts((prev) => prev.map((p) => (p.id === id ? updated : p)));
     } catch (error) {

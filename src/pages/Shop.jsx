@@ -1,31 +1,3 @@
-//  mock data in production, API in development
-const USE_MOCK_DATA = import.meta.env.PROD;
-
-const fetchProducts = async () => {
-  try {
-    setLoading(true);
-
-    if (USE_MOCK_DATA) {
-      //  mock data for production
-      await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate network
-      setProducts(mockProducts);
-    } else {
-      //  JSON server for development
-      const response = await fetch(
-        'https://json-server-vercel-five-sand.vercel.app',
-      );
-      if (!response.ok) throw new Error('Failed to fetch products');
-      const data = await response.json();
-      setProducts(data);
-    }
-
-    setError(null);
-  } catch (err) {
-    setError(err.message);
-  } finally {
-    setLoading(false);
-  }
-};
 import { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import SearchBar from '../components/SearchBar';
@@ -33,25 +5,25 @@ import { Package, AlertCircle, Loader2 } from 'lucide-react';
 import styles from './Shop.module.css';
 
 const Shop = () => {
+  //  Vercel API URL from .env
+  const API_URL = import.meta.env.VITE_API_URL;
+  // drinks to match the key in db.json
+  const ENDPOINT = API_URL + '/drinks';
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [category, setCategory] = useState('all');
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await fetch(
-        'https://json-server-vercel-five-sand.vercel.app',
-      );
+      const response = await fetch(ENDPOINT);
       if (!response.ok) throw new Error('Failed to fetch products');
       const data = await response.json();
-      setProducts(data);
+      // Handles both /drinks array or root object responses
+      setProducts(Array.isArray(data) ? data : Object.values(data).flat());
       setError(null);
     } catch (err) {
       setError(err.message);
@@ -60,10 +32,14 @@ const Shop = () => {
     }
   };
 
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   const filteredProducts = products.filter((product) => {
     const matchesSearch =
-      product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.description.toLowerCase().includes(searchTerm.toLowerCase());
+      product.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.description?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = category === 'all' || product.category === category;
     return matchesSearch && matchesCategory;
   });
@@ -93,7 +69,6 @@ const Shop = () => {
         <h1>Our Menu</h1>
         <p>Choose your perfect pixel drink</p>
       </div>
-
       <SearchBar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
