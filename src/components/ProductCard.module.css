@@ -12,7 +12,7 @@
 }
 
 .imageContainer {
-  background: linear-gradient(135deg, #E8EEFF 0%, #FFF9F0 100%);
+  background: linear-gradient(135deg, #faf5e0 0%, #fff9f0 100%);
   padding: 2rem;
   display: flex;
   justify-content: center;
@@ -21,8 +21,8 @@
 }
 
 .image {
-  max-width: 150px;
-  max-height: 150px;
+  max-width: 200px;
+  max-height: 200px;
   object-fit: contain;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
@@ -44,18 +44,18 @@
 }
 
 .cold {
-  background: #E3F2FD;
-  color: #1976D2;
+  background: #e3f2fd;
+  color: #1976d2;
 }
 
 .hot {
-  background: #FFF3E0;
-  color: #F57C00;
+  background: #fff3e0;
+  color: #f57c00;
 }
 
 .name {
   font-size: 1.5rem;
-  color: #4A6CF7;
+  color: #56231b;
   margin-bottom: 0.5rem;
 }
 
@@ -68,5 +68,5 @@
 .price {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #4A6CF7;
+  color: #56231b;
 }

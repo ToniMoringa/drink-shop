@@ -14,14 +14,14 @@ const Home = () => {
               size={16}
               style={{ display: 'inline', marginRight: '4px' }}
             />
-            Welcome to Pixel Brew Café
+            20% Off All Drinks - with code AE3PXL
           </div>
 
-          <h1 className={styles.heroTitle}>Cute Drinks for Pixel Hearts</h1>
+          <h1 className={styles.heroTitle}>Tasty Drinks for Pixel Hearts</h1>
 
           <p className={styles.heroSubtitle}>
-            Discover our collection of adorable pixel-art drinks, crafted with
-            love and perfect for your cozy moments.
+            Discover our collection of sweet drinks, crafted with love and
+            perfect for your cozy moments.
           </p>
 
           <Link to="/shop" className={styles.heroButton}>
@@ -30,13 +30,6 @@ const Home = () => {
             <ArrowRight size={20} />
           </Link>
         </div>
-
-        {/*  hero image */}
-        <img
-          src="/assets/hero-drink.png"
-          alt="Featured Drink"
-          className={styles.heroImage}
-        />
       </div>
 
       <div className={styles.features}>
@@ -45,10 +38,7 @@ const Home = () => {
             <Coffee size={28} />
           </div>
           <h3>Fresh Brewed</h3>
-          <p>
-            Every drink is made fresh with premium ingredients and pixel-perfect
-            presentation
-          </p>
+          <p>Every drink is made fresh with premium ingredients</p>
         </div>
 
         <div className={styles.feature}>
@@ -56,7 +46,9 @@ const Home = () => {
             <Heart size={28} />
           </div>
           <h3>Made with Love</h3>
-          <p>Each pixel drink is crafted with care and attention to detail</p>
+          <p>
+            Each of our drinks are crafted with care and attention to detail
+          </p>
         </div>
 
         <div className={styles.feature}>
@@ -64,7 +56,7 @@ const Home = () => {
             <Sparkles size={28} />
           </div>
           <h3>Unique Designs</h3>
-          <p>Exclusive pixel art designs you won't find anywhere else</p>
+          <p>Exclusive drinks you won't find anywhere else</p>
         </div>
       </div>
     </div>

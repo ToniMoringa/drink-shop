@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Shop from './pages/Shop';
 import Admin from './pages/Admin';
@@ -17,6 +18,7 @@ function App() {
             <Route path="/admin" element={<Admin />} />
           </Routes>
         </main>
+        <Footer />
       </div>
     </BrowserRouter>
   );
