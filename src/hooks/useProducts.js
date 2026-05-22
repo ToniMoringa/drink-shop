@@ -1,36 +1,82 @@
-import { useState, useEffect } from 'react';
+// src/hooks/useProducts.js
+import { useState, useEffect, useCallback } from 'react';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 export const useProducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     try {
-      const res = await fetch(`${API_URL}/drinks`);
-      if (!res.ok) throw new Error('Failed to fetch');
+      setLoading(true);
+      const res = await fetch(`${API_URL}/products`);
+      jsx;
+      if (!res.ok) throw new Error(`Failed: ${res.status}`);
       const data = await res.json();
       setProducts(Array.isArray(data) ? data : Object.values(data));
-    } catch (error) { console.error('Fetch error:', error); } finally { setLoading(false); }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  const crud = async (method, url, body) => {
+    const res = await fetch(url, {
+      method,
+      headers: { 'Content-Type': 'application/json' },
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    if (!res.ok) throw new Error(`Failed ${method}`);
+    return res.json();
   };
 
-  const addProduct = async (product) => {
-    try {
-      const res = await fetch(`${API_URL}/drinks`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(product) });
-      const newProduct = await res.json();
-      setProducts((prev) => [...prev, newProduct]);
-    } catch (error) { console.error('Add error:', error); }
-  };
+  const addProduct = (product) =>
+    crud('POST', `${API_URL}/products`, product)
+      .then((newP) => {
+        setProducts((p) => [...p, newP]);
+        return { success: true };
+      })
+      .catch((err) => {
+        setError(err.message);
+        return { success: false, error: err.message };
+      });
 
-  const updateProduct = async (id, updates) => {
-    try {
-      const res = await fetch(`${API_URL}/drinks/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(updates) });
-      const updated = await res.json();
-      setProducts((prev) => prev.map((p) => (p.id === id ? updated : p)));
-    } catch (error) { console.error('Update error:', error); }
-  };
+  const updateProduct = (id, updates) =>
+    crud('PATCH', `${API_URL}/products/${id}`, updates)
+      .then((updated) => {
+        setProducts((p) => p.map((x) => (x.id === id ? updated : x)));
+        return { success: true };
+      })
+      .catch((err) => {
+        setError(err.message);
+        return { success: false, error: err.message };
+      });
 
-  useEffect(() => { fetchProducts(); }, []);
-  return { products, loading, addProduct, updateProduct };
+  const deleteProduct = (id) =>
+    crud('DELETE', `${API_URL}/products/${id}`)
+      .then(() => {
+        setProducts((p) => p.filter((x) => x.id !== id));
+        return { success: true };
+      })
+      .catch((err) => {
+        setError(err.message);
+        return { success: false, error: err.message };
+      });
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
+
+  return {
+    products,
+    loading,
+    error,
+    addProduct,
+    updateProduct,
+    deleteProduct,
+    refetch: fetchProducts,
+  };
 };

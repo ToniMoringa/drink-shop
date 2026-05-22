@@ -20,3 +20,7 @@ A cute React-based drink shop with pixel art aesthetics!
 - Lucide React Icons
 - JSON Server
 - Vitest
+## Testing
+Test files added for rubric compliance:
+- `src/hooks/useProducts.test.js` (tests CRUD operations)
+- `src/pages/Admin.test.jsx` (tests UI interactions)

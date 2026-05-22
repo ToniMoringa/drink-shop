@@ -71,7 +71,7 @@ const Footer = () => {
 
       <div className={styles.footerBottom}>
         <p>
-          &copy; {new Date().getFullYear()} Pixel Brew Café. Made with  and
+          &copy; {new Date().getFullYear()} Pixel Brew Café. Made with Love and
           pixels.
         </p>
       </div>

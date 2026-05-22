@@ -16,6 +16,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/shop" element={<Shop />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="*" element={<div style={{padding:'2rem'}}>404 - Page not found</div>} />
           </Routes>
         </main>
         <Footer />
